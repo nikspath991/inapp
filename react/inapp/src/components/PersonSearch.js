@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from './usercontext';
 
@@ -55,9 +55,15 @@ function PersonSearch() {
         }
     };
 
+    useEffect(()=>{
+        searchPersons();
+    },[])
+
+
+
     return (
         <div>
-            <h2>Search Persons</h2>
+            <h4>Search Persons</h4>
             {token ? (
                 <div className="container">
                     <div className="row">
@@ -82,9 +88,9 @@ function PersonSearch() {
                         
                     </div>
                    
-                    {persons.length > 0 &&  (<div>
+                    {persons.length > 0 ? (<div>
                         <ListItem itemlist={persons} />
-                    </div>)}
+                    </div>) : (<h4>No result found</h4>)}
                 </div>
             ) : (
                 <a href="/">Login</a>

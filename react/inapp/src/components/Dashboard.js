@@ -2,6 +2,7 @@ import React from 'react';
 import MovieSearch from './MovieSearch';
 import PersonSearch from './PersonSearch';
 import { useUser } from './usercontext';
+import Header from './Header';
 
 
 function Dashboard(){
@@ -11,6 +12,7 @@ function Dashboard(){
         <>
         {user ? ( 
             <>
+                <Header />
                 <MovieSearch />
                 <PersonSearch />
          </> ) : (

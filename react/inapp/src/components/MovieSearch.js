@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from './usercontext';
 
@@ -56,9 +56,13 @@ function MovieSearch() {
         }
     };
 
+    useEffect(()=>{
+      searchMovies();
+  },[])
+
     return (
         <div>
-            <h2>Search Movies</h2>
+            <h4>Search Movies</h4>
             <div className="container">
                 <div className="row">
 
@@ -79,9 +83,9 @@ function MovieSearch() {
                     </div>
                 </div>
 
-                {movies && (<div>
+                {movies.length > 0 ?(<div>
                 <ListItem itemlist={movies}/>
-            </div>)}
+            </div>):(<h4>No result found</h4>)}
                 
             </div>
             
