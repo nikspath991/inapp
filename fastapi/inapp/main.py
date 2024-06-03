@@ -1,8 +1,10 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-import models, schemas, crud, auth
-from database import SessionLocal, engine
+from inapp.db import models, schemas
+from inapp.core import crud
+from inapp.dependancies import auth
+from inapp.db.database import SessionLocal, engine
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 #John Belushi 1899 actor,miscellaneous,producer tt0072308,tt0050419,tt0053137,tt0027125

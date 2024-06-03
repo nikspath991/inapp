@@ -1,12 +1,15 @@
+from dotenv import load_dotenv
 from sqlalchemy.orm import Session
 from fastapi import  HTTPException, status
-import models, schemas
+from inapp.db import models, schemas
 from sqlalchemy import func
-import auth
+from inapp.dependancies import auth
 from datetime import datetime, timedelta
+import os
 
+load_dotenv()
 
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
 
 def removespace(string):
     return string.replace(" ", "")
@@ -57,7 +60,7 @@ def login_user(db: Session , username: str, password: str):
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(minutes=int(ACCESS_TOKEN_EXPIRE_MINUTES))
     access_token = auth.create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
