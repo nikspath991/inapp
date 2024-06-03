@@ -5,15 +5,15 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from pydantic import BaseModel
 from typing import Optional
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
 
 
-
-# Settings
-SECRET_KEY = "test_key_inapp"
-ALGORITHM = "HS256"
-
-
-# Token functions
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 

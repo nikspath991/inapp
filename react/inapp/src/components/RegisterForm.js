@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from './services/Api';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -12,19 +12,13 @@ function RegisterForm() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://127.0.0.1:8000/register/', {
-        username,
-        password
-      });
+      const response = api.registeruser(username,password)
       
       const data = response.data;
       console.log(data);
-      
-      // Reset form fields and clear any previous errors
       setUsername('');
       setPassword('');
       setError(null);
-
       navigate("/login")
     } catch (error) {
       console.error('Error:', error.response);

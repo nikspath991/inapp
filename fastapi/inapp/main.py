@@ -33,7 +33,6 @@ def get_db():
 
 @app.get("/movies/", response_model=List[schemas.MovieBase])
 def search_movies(year: str = None, genre: str = None, person_name: str = None, title_type: str = None, db: Session = Depends(get_db), current_user: schemas.User = Depends(auth.get_current_user)):
-    print("years===",year)
     movies = crud.get_movie_by_filters(db, year, genre, person_name, title_type)
     return movies
 

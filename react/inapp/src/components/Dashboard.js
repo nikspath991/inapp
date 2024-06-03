@@ -6,7 +6,7 @@ import Header from './Header';
 
 
 function Dashboard(){
-    const { user, token } = useUser();
+    const { user } = useUser();
 
     return (
         <>

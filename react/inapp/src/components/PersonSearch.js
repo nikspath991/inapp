@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import axios from 'axios';
 import { useUser } from './usercontext';
+import api from './services/Api';
 
 
 function ListItem({ itemlist }) {
@@ -43,13 +43,8 @@ function PersonSearch() {
 
     const searchPersons = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/persons', {
-                params: filters,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            setPersons(response.data);
+            const response = await api.fetchpersons(filters,token)
+            setPersons(response);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
