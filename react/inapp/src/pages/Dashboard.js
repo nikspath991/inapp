@@ -1,8 +1,8 @@
 import React from 'react';
-import MovieSearch from './MovieSearch';
-import PersonSearch from './PersonSearch';
-import { useUser } from './usercontext';
-import Header from './Header';
+import MovieSearch from '../components/MovieSearch';
+import PersonSearch from '../components/PersonSearch';
+import { useUser } from '../hooks/usercontext';
+import Header from '../components/Header';
 
 
 function Dashboard(){

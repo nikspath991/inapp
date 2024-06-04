@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useUser } from './usercontext';
+import { useUser } from '../hooks/usercontext';
 import { useNavigate } from 'react-router-dom';
-import api from './services/Api';
+import api from '../services/Api';
 
 function LoginForm() {
   const [username, setUsername] = useState('');

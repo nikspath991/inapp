@@ -1,6 +1,6 @@
 import React from 'react';
-import RouteList from './components/routes';
-import {UserProvider} from './components/usercontext';
+import RouteList from './services/routes';
+import {UserProvider} from './hooks/usercontext';
 
 
 function App() {
