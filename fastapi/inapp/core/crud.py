@@ -64,4 +64,4 @@ def login_user(db: Session , username: str, password: str):
     access_token = auth.create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token, "token_type": "bearer","username":username}
