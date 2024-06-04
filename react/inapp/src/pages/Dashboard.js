@@ -1,16 +1,18 @@
 import React from 'react';
-import MovieSearch from './MovieSearch';
-import PersonSearch from './PersonSearch';
-import { useUser } from './usercontext';
+import MovieSearch from '../components/MovieSearch';
+import PersonSearch from '../components/PersonSearch';
+import { useUser } from '../hooks/usercontext';
+import Header from '../components/Header';
 
 
 function Dashboard(){
-    const { user, token } = useUser();
+    const { user } = useUser();
 
     return (
         <>
         {user ? ( 
             <>
+                <Header />
                 <MovieSearch />
                 <PersonSearch />
          </> ) : (

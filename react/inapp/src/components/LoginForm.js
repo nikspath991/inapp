@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useUser } from './usercontext';
+import { useUser } from '../hooks/usercontext';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/Api';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -18,13 +18,7 @@ function LoginForm() {
     formData.append('password', password);
     
     try {
-      const response = await axios.post('http://127.0.0.1:8000/token/', formData, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
-      
-      const data = response.data;
+      const data = await api.loginuser(formData);
       login(username, data.access_token)
       console.log(data);
       

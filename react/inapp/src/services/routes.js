@@ -1,9 +1,9 @@
 import React from 'react';
-import MovieSearch from './MovieSearch';
-import PersonSearch from './PersonSearch';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
-import Dashboard from './Dashboard';
+import MovieSearch from '../components/MovieSearch';
+import PersonSearch from '../components/PersonSearch';
+import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
+import Dashboard from '../pages/Dashboard';
 import { BrowserRouter as Router, Routes,Route, Outlet, } from 'react-router-dom';
 
 function RouteList() {

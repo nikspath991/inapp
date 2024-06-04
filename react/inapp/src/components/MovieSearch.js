@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useUser } from './usercontext';
+import React, { useState,useEffect } from 'react';
+import { useUser } from '../hooks/usercontext';
+import api from '../services/Api'; 
 
 
 
@@ -44,21 +44,20 @@ function MovieSearch() {
 
     const searchMovies = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/movies', {
-                params: filters,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            setMovies(response.data);
+            const response = await api.fetchmovies(filters,token)
+            setMovies(response);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
+    useEffect(()=>{
+      searchMovies();
+  },[])
+
     return (
         <div>
-            <h2>Search Movies</h2>
+            <h4>Search Movies</h4>
             <div className="container">
                 <div className="row">
 
@@ -79,9 +78,9 @@ function MovieSearch() {
                     </div>
                 </div>
 
-                {movies && (<div>
+                {movies.length > 0 ?(<div>
                 <ListItem itemlist={movies}/>
-            </div>)}
+            </div>):(<h4>No result found</h4>)}
                 
             </div>
             

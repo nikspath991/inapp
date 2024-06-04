@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useUser } from './usercontext';
+import React, { useState,useEffect } from 'react';
+import { useUser } from '../hooks/usercontext';
+import api from '../services/Api';
 
 
 function ListItem({ itemlist }) {
@@ -43,21 +43,22 @@ function PersonSearch() {
 
     const searchPersons = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/persons', {
-                params: filters,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            setPersons(response.data);
+            const response = await api.fetchpersons(filters,token)
+            setPersons(response);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
+    useEffect(()=>{
+        searchPersons();
+    },[])
+
+
+
     return (
         <div>
-            <h2>Search Persons</h2>
+            <h4>Search Persons</h4>
             {token ? (
                 <div className="container">
                     <div className="row">
@@ -82,9 +83,9 @@ function PersonSearch() {
                         
                     </div>
                    
-                    {persons.length > 0 &&  (<div>
+                    {persons.length > 0 ? (<div>
                         <ListItem itemlist={persons} />
-                    </div>)}
+                    </div>) : (<h4>No result found</h4>)}
                 </div>
             ) : (
                 <a href="/">Login</a>
